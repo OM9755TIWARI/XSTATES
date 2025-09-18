@@ -111,7 +111,7 @@ const App = () => {
         </select>
       </div>
 
-      {selectedCity ? (
+      {selectedCity && selectedState && selectedCountry ? (
         <h1>
             You selected {selectedCity}, {selectedState}, {selectedCountry}
         </h1>
