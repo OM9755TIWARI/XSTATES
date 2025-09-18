@@ -71,53 +71,60 @@ const App = () => {
   };
 
   return (
-  <div className="location-selector" style={{ textAlign: "center" }}>
-    <h1>
-      {selectedCity
-        ? `You selected ${selectedCity}, ${selectedState}, ${selectedCountry}`
-        : "Select Location"}
-    </h1>
+    <div className="location-selector" style={{ textAlign: "center" }}>
+      <h1>Select Location</h1>
+      <div>
+        <label></label>
+        <select value={selectedCountry} onChange={handleCountryChange}>
+          <option value="">Select Country</option>
+          {countries.map((country) => (
+            <option key={country} value={country}>
+              {country}
+            </option>
+          ))}
+        </select>
+        &ensp;
+        <select
+          value={selectedState}
+          onChange={handleStateChange}
+          disabled={!selectedCountry}
+        >
+          <option value="">Select State</option>
+          {states.map((state) => (
+            <option key={state} value={state}>
+              {state}
+            </option>
+          ))}
+        </select>
+        &ensp;
+        <select
+          value={selectedCity}
+          onChange={handleCityChange}
+          disabled={!selectedState}
+        >
+          <option value="">Select City</option>
+          {cities.map((city) => (
+            <option key={city} value={city}>
+              {city}
+            </option>
+          ))}
+        </select>
+      </div>
 
-    <div>
-      <select value={selectedCountry} onChange={handleCountryChange}>
-        <option value="">Select Country</option>
-        {countries.map((country) => (
-          <option key={country} value={country}>
-            {country}
-          </option>
-        ))}
-      </select>
-      &ensp;
-      <select
-        value={selectedState}
-        onChange={handleStateChange}
-        disabled={!selectedCountry}
-      >
-        <option value="">Select State</option>
-        {states.map((state) => (
-          <option key={state} value={state}>
-            {state}
-          </option>
-        ))}
-      </select>
-      &ensp;
-      <select
-        value={selectedCity}
-        onChange={handleCityChange}
-        disabled={!selectedState}
-      >
-        <option value="">Select City</option>
-        {cities.map((city) => (
-          <option key={city} value={city}>
-            {city}
-          </option>
-        ))}
-      </select>
+      {selectedCity ? (
+        <p>
+          <b>
+            You selected <span style={{ fontSize: 20 }}>{selectedCity}</span>,{" "}
+            <span style={{ color: "grey" }}>
+              {selectedState}, {selectedCountry}
+            </span>
+          </b>
+        </p>
+      ) : (
+        <></>
+      )}
     </div>
-  </div>
-);
-
-
+  );
 };
 
 export default App;
