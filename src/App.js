@@ -70,9 +70,14 @@ const App = () => {
     setSelectedCity(e.target.value);
   };
 
-return (
+  return (
   <div className="location-selector" style={{ textAlign: "center" }}>
-    <h1>Select Location</h1>
+    <h1>
+      {selectedCity
+        ? `You selected ${selectedCity}, ${selectedState}, ${selectedCountry}`
+        : "Select Location"}
+    </h1>
+
     <div>
       <select value={selectedCountry} onChange={handleCountryChange}>
         <option value="">Select Country</option>
@@ -109,14 +114,9 @@ return (
         ))}
       </select>
     </div>
-
-    {selectedCity ? (
-      <h1>
-        You selected {selectedCity}, {selectedState}, {selectedCountry}
-      </h1>
-    ) : null}
   </div>
 );
+
 
 };
 
